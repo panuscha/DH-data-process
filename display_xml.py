@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from pymarc import map_xml
 
 file_path = 'data/ucla.xml'
@@ -10,4 +11,13 @@ def print_record(r):
             print(field['a'])
             database.append(field['a'])
 
+=======
+from pymarc import map_xml
+
+file_path = 'data/ucla.xml'
+
+def print_record(r):
+    print(r)
+
+>>>>>>> origin/main
 map_xml(print_record, file_path)
