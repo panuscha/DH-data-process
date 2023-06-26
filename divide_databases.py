@@ -3,12 +3,12 @@ from copy import deepcopy
 
 file_path = 'data/ucla.xml'
 
-out_B = 'data/ucla_B.mrk'
-out_ret = 'data/ucla_ret.mrk'
-out_smz = 'data/ucla_smz.mrk'
-out_int = 'data/ucla_int.mrk'
-out_cle = 'data/ucla_cle.mrk'
-out_trl = 'data/ucla_trl.mrk'
+out_B = 'data/ucla/ucla_B.mrk'
+out_ret = 'data/ucla/ucla_ret.mrk'
+out_smz = 'data/ucla/ucla_smz.mrk'
+out_int = 'data/ucla/ucla_int.mrk'
+out_cle = 'data/ucla/ucla_cle.mrk'
+out_trl = 'data/ucla/ucla_trl.mrk'
 
 databases_B = ['B12', 'B45', 'B97', 'B70', 'B80']  
 database_ret = 'RET'
