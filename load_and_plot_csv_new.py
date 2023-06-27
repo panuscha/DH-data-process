@@ -3,51 +3,29 @@ import matplotlib.pyplot as plt
 from collections import Counter
 
 file_path = 'data/b_only_subset.csv'
+out_B = 'data/csv/ucla_B.csv'
+out_ret = 'data/csv/ucla_ret.csv'
+out_smz = 'data/csv/ucla_smz.csv'
+out_int = 'data/csv/ucla_int.csv'
+out_cle = 'data/csv/ucla_cle.csv'
+out_trl = 'data/csv/ucla_trl.csv'
 
-df = pd.read_csv(file_path, delimiter=';', dtype='str')
-
-year_tags = {'years': [], 
-            'figures': [],
-            'descriptions': [],
-            'genres': []}
-figures = {}
-descriptions = {}
-genres = {}
-
-for index, row in df.iterrows():
-    fig = []
-    descr = []
-    gen = []
-
-    if not pd.isnull(row['figures']) :
-        fig  = row['figures'].split('$')[:-1]
-        for f in fig:
-            if not f in figures.keys():
-                figures[f] = 1
-            else:
-                figures[f] += 1 
+data = pd.read_csv(out_int, delimiter=',')
 
 
-    if not pd.isnull(row['description']):
-        descr  = row['description'].split('$')[:-1]
-        for d in descr:
-            if not d in descriptions.keys():
-                descriptions[d] = 1
-            else:
-                descriptions[d] += +1 
 
-    if not pd.isnull(row['genre']) :        
-        gen  = row['genre'].split('$')[:-1]
-        for g in gen:
-            if not g in genres.keys():
-                genres[g] = 1
-            else:
-                genres[g] += 1  
 
-    year_tags['years'].append(row['year'])
-    year_tags['figures'].append(fig)   
-    year_tags['descriptions'].append(descr)  
-    year_tags['genres'].append(gen)       
+# year_tags = {'years': [], 
+#             'figures': [],
+#             'descriptions': [],
+#             'genres': []}
+# figures = {}
+# descriptions = {}
+# genres = {}
+
+# def flatten(l):
+#     return [item for sublist in l for item in sublist]
+
 
 
 # sorted_genres_desc = dict(sorted(genres.items(), key=lambda x: x[1], reverse=True))    
@@ -94,7 +72,7 @@ for index, row in df.iterrows():
 
 # data =  pd.DataFrame.from_dict(year_tags)
 
-# most_common_genre = data.groupby('years')['genres'].apply(lambda x: Counter(str(topic) for topics in x for topic in topics).most_common(1)[0][0] if any(x) > 0 else None)
+# most_common_genre = data.groupby('year')['genre'].apply(lambda x: Counter(str(topic) for topics in x for topic in topics).most_common(1)[0][0] if any(x) > 0 else None)
 
 # plt.bar(most_common_genre.index, most_common_genre.values)
 # plt.xlabel('Year')
@@ -119,19 +97,19 @@ for index, row in df.iterrows():
 # plt.xticks(rotation=45)
 
 
-data =  pd.DataFrame.from_dict(year_tags)
+#data =  pd.DataFrame.from_dict(year_tags)
 
 # Filter out rows where 'figures' is empty
-data_filtered = data[data['figures'].apply(lambda x: len(x) > 0)]
+# data_filtered = data[data['figures'].apply(lambda x: len(x) > 0)]
 
-most_common_figure = data_filtered.groupby('years')['figures'].apply(lambda x: Counter(str(topic) for topics in x for topic in topics).most_common(1)[0][0] if len(x) > 0 else None)
+# most_common_figure = data_filtered.groupby('year')['figures'].apply(lambda x: Counter(str(topic) for topics in x for topic in topics).most_common(1)[0][0] if len(x) > 0 else None)
 
-plt.bar(most_common_figure.index, most_common_figure.values)
-plt.xlabel('Year')
-plt.ylabel('Most Common Figure')
-plt.title('Most Common Figure per Year')
-plt.xticks(list(most_common_figure.index))
-plt.xticks(rotation=45)
+# plt.bar(most_common_figure.index, most_common_figure.values)
+# plt.xlabel('Year')
+# plt.ylabel('Most Common Figure')
+# plt.title('Most Common Figure per Year')
+# plt.xticks(list(most_common_figure.index))
+# plt.xticks(rotation=45)
 
 
 

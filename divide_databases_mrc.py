@@ -1,14 +1,14 @@
-from pymarc import map_xml, Record, TextWriter
-from copy import deepcopy
+from pymarc import map_xml, MARCWriter
 
 file_path = 'data/ucla.xml'
 
-out_B = 'data/ucla/ucla_B.mrk'
-out_ret = 'data/ucla/ucla_ret.mrk'
-out_smz = 'data/ucla/ucla_smz.mrk'
-out_int = 'data/ucla/ucla_int.mrk'
-out_cle = 'data/ucla/ucla_cle.mrk'
-out_trl = 'data/ucla/ucla_trl.mrk'
+
+out_B = 'data/ucla/ucla_B.mrc'
+out_ret = 'data/ucla/ucla_ret.mrc'
+out_smz = 'data/ucla/ucla_smz.mrc'
+out_int = 'data/ucla/ucla_int.mrc'
+out_cle = 'data/ucla/ucla_cle.mrc'
+out_trl = 'data/ucla/ucla_trl.mrc'
 
 databases_B = ['B12', 'B45', 'B97', 'B70', 'B80']  
 database_ret = 'RET'
@@ -17,15 +17,19 @@ database_int = 'INT'
 database_cle = 'CLE'
 database_trl = 'TRL'
 
-writer_B =  TextWriter(open(out_B, 'wt', encoding='utf8' ))
-writer_ret =  TextWriter(open(out_ret, 'wt', encoding='utf8'))
-writer_smz =  TextWriter(open(out_smz, 'wt', encoding='utf8'))
-writer_int =  TextWriter(open(out_int, 'wt', encoding='utf8'))
-writer_cle =  TextWriter(open(out_cle, 'wt', encoding='utf8'))
-writer_trl =  TextWriter(open(out_trl, 'wt', encoding='utf8'))
+
+writer_B =  MARCWriter(open(out_B, 'wb'))
+writer_ret =  MARCWriter(open(out_ret, 'wb'))
+writer_smz =  MARCWriter(open(out_smz, 'wb'))
+writer_int =  MARCWriter(open(out_int, 'wb'))
+writer_cle =  MARCWriter(open(out_cle, 'wb'))
+writer_trl =  MARCWriter(open(out_trl, 'wb'))
+
 
 def save_databases(r):
     for field in r.get_fields('964'):
+        r.remove_fields('LDR')
+        r.remove_fields('FMT')
         if field['a'] in databases_B:
             try:
                 writer_B.write(r)   
