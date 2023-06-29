@@ -1,6 +1,5 @@
 from pymarc import MARCReader
 import pandas as pd
-import json
 
 
 in_B = 'data/ucla/ucla_B.mrc'
@@ -97,58 +96,70 @@ with open(in_int, 'rb') as data:
     df['genre'] = df['genre'].apply(lambda x: ';'.join(x))
     df.to_csv(out_int, encoding = 'utf8', sep = ",")    
 
-# with open(in_B, 'rb') as data:
-#     reader = MARCReader(data)
-#     dict = {'title': [], 
-#                     'author': [],
-#                     'author code': [],
-#                     'year': [],
-#                     'figures' : [],
-#                     'description' : [],
-#                     'genre' : [] } 
-#     for record in reader:
-#         dict = save_to_dict(record, databases_B, dict)
-#     df = pd.DataFrame.from_dict(dict)
-#     df.to_csv(out_B, encoding = 'utf8' )           
+with open(in_B, 'rb') as data:
+    reader = MARCReader(data)
+    dict = {'title': [], 
+                    'author': [],
+                    'author code': [],
+                    'year': [],
+                    'figures' : [],
+                    'description' : [],
+                    'genre' : [] } 
+    for record in reader:
+        dict = save_to_dict(record, databases_B, dict)
+    df = pd.DataFrame.from_dict(dict)
+    df['figures'] = df['figures'].apply(lambda x: ';'.join(x))
+    df['description'] = df['description'].apply(lambda x: ';'.join(x))
+    df['genre'] = df['genre'].apply(lambda x: ';'.join(x))
+    df.to_csv(out_B, encoding = 'utf8', sep = ",")            
 
-# with open(in_cle, 'rb') as data:
-#     reader = MARCReader(data)
-#     dict = {'title': [], 
-#                     'author': [],
-#                     'author code': [],
-#                     'year': [],
-#                     'figures' : [],
-#                     'description' : [],
-#                     'genre' : [] } 
-#     for record in reader:
-#         dict = save_to_dict(record, database_cle, dict)
-#     df = pd.DataFrame.from_dict(dict)
-#     df.to_csv(out_cle, encoding = 'utf8' )         
+with open(in_cle, 'rb') as data:
+    reader = MARCReader(data)
+    dict = {'title': [], 
+                    'author': [],
+                    'author code': [],
+                    'year': [],
+                    'figures' : [],
+                    'description' : [],
+                    'genre' : [] } 
+    for record in reader:
+        dict = save_to_dict(record, database_cle, dict)
+    df = pd.DataFrame.from_dict(dict)
+    df['figures'] = df['figures'].apply(lambda x: ';'.join(x))
+    df['description'] = df['description'].apply(lambda x: ';'.join(x))
+    df['genre'] = df['genre'].apply(lambda x: ';'.join(x))
+    df.to_csv(out_cle, encoding = 'utf8', sep = ",")          
     
-# with open(in_ret, 'rb') as data:
-#     reader = MARCReader(data)
-#     dict = {'title': [], 
-#                     'author': [],
-#                     'author code': [],
-#                     'year': [],
-#                     'figures' : [],
-#                     'description' : [],
-#                     'genre' : [] } 
-#     for record in reader:
-#         dict = save_to_dict(record, database_ret, dict)
-#     df = pd.DataFrame.from_dict(dict)
-#     df.to_csv(out_ret, encoding = 'utf8' )    
+with open(in_ret, 'rb') as data:
+    reader = MARCReader(data)
+    dict = {'title': [], 
+                    'author': [],
+                    'author code': [],
+                    'year': [],
+                    'figures' : [],
+                    'description' : [],
+                    'genre' : [] } 
+    for record in reader:
+        dict = save_to_dict(record, database_ret, dict)
+    df = pd.DataFrame.from_dict(dict)
+    df['figures'] = df['figures'].apply(lambda x: ';'.join(x))
+    df['description'] = df['description'].apply(lambda x: ';'.join(x))
+    df['genre'] = df['genre'].apply(lambda x: ';'.join(x))
+    df.to_csv(out_ret, encoding = 'utf8', sep = ",")     
     
-# with open(in_smz, 'rb') as data:
-#     reader = MARCReader(data)
-#     dict = {'title': [], 
-#                     'author': [],
-#                     'author code': [],
-#                     'year': [],
-#                     'figures' : [],
-#                     'description' : [],
-#                     'genre' : [] } 
-#     for record in reader:
-#         dict = save_to_dict(record, database_smz, dict)
-#     df = pd.DataFrame.from_dict(dict)
-#     df.to_csv(out_smz, encoding = 'utf8' )              
+with open(in_smz, 'rb') as data:
+    reader = MARCReader(data)
+    dict = {'title': [], 
+                    'author': [],
+                    'author code': [],
+                    'year': [],
+                    'figures' : [],
+                    'description' : [],
+                    'genre' : [] } 
+    for record in reader:
+        dict = save_to_dict(record, database_smz, dict)
+    df = pd.DataFrame.from_dict(dict)
+    df['figures'] = df['figures'].apply(lambda x: ';'.join(x))
+    df['description'] = df['description'].apply(lambda x: ';'.join(x))
+    df['genre'] = df['genre'].apply(lambda x: ';'.join(x))
+    df.to_csv(out_smz, encoding = 'utf8', sep = ",")              
