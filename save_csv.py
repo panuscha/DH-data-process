@@ -43,12 +43,11 @@ def save_to_dict(record, dict, field_list):
             print("LDR: " + str(record.leader))   
     return dict 
 
-# 'data/csv/ucla_B.csv'
-# 'data/csv/ucla_ret.csv'
-# 'data/csv/ucla_smz.csv'
-# 'data/csv/ucla_int.csv'
-# 'data/csv/ucla_cle.csv'
-# 'data/csv/ucla_trl.csv'
+# 'data/ucla/ucla_B.mrc'
+# 'data/ucla/ucla_ret.mrc'
+# 'data/ucla/ucla_smz.mrc'
+# 'data/ucla/ucla_int.mrc'
+# 'data/ucla/ucla_cle.mrc'
 
 # Cesta k marcovemu dokumentu
 database = 'data/ucla/ucla_ret.mrc'
