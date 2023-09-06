@@ -24,12 +24,12 @@ def save_to_dict(record, dict, field_list):
                     
                     # Pokud pole nema zadna podpole, pridame cele pole do listu dict_add_list
                     if subfield_tag is None:
-                        dict_add_list.append(str(field))
+                        dict_add_list.append(field.data)
                     
                     # Pokud subtag je instance slice, tedy to znamena, ze chceme jen nejakou cast pole, ktera neni definovana subpolem,
                     # pridame cast pole do slovniku dict_add_list    
                     elif isinstance(subfield_tag, slice):
-                        dict_add_list.append(str(field) [subfield_tag])     
+                        dict_add_list.append(field.data [subfield_tag])     
                     
                     # Pokud pole obsahuje podpole, pridame do slovniku dict_add_list jen podpole
                     elif '$'+subfield_tag in str(field):  
