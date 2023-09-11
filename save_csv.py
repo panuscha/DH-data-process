@@ -39,7 +39,6 @@ def save_to_dict(record, dict, field_list):
                 dict[dict_key_name].append(dict_add_list)
         except Exception as error:
             print("Exception: " + type(error).__name__)  
-            print("964 Field: " + str(record.get_fields('964')))  
             print("LDR: " + str(record.leader))   
     return dict 
 
@@ -52,23 +51,16 @@ def save_to_dict(record, dict, field_list):
 # Cesta k marcovemu dokumentu
 database = 'data/ucla/ucla_ret.mrc'
 
-# Z cesty vytahneme typ databaze
-pattern = r"data/ucla/ucla_(.*?)\.mrc"
-
-# Find the substring using regex
-database_type = re.search(pattern, database).group(1)
-
-out = 'data/csv/out_{}.csv'.format(database_type)
+out = 'data/csv/out_ret.csv'
 
 with open(database, 'rb') as data:
     reader = MARCReader(data)
-    # Seznam poli, ktere si chceme ulozit
+    # List poli, ktere si chceme ulozit
     field_list = [('title', '245', 'a'),
                 ('author', '100', 'a'),
                 ('author code', '100', '7'),
-                # Rok je schovany v poli 008 na 13. az 16. miste, 
-                # proto vyuzijeme funkci slice
-                ('year', '008', slice(13,17, None)),
+                # Rok je schovany v poli 008 na 8. az 11. miste, proto vyuzijeme funkci slice
+                ('year', '008', slice(7,11, None)), #7-11
                 ('figures', '600', 'a'),
                 ('description', '650', 'a'),
                 ('genre', '655', 'a'),
@@ -82,8 +74,12 @@ with open(database, 'rb') as data:
     df = pd.DataFrame.from_dict(dict)
 
     # U jmen si chceme ulozit jmeno a prijmeni bez koncove carky ',', ktera je na konci stringu
-    df['figures'] = df['figures'].apply(lambda x: [y[:y.rfind(',')] if isinstance(y, str) and len(y) > 0 else y for y in x]) 
-    df['author'] = df['author'].apply(lambda x: [y[:y.rfind(',')] if isinstance(y, str) and len(y) > 0 else y for y in x])  
+    df['figures'] = df['figures'].apply(lambda x: [y.strip(' ,') if len(y) > 0  else y for y in x])  
+    df['author'] = df['author'].apply(lambda x: [y.strip(' ,') if len(y) > 0 else y for y in x]) 
+
+    # Nazev si chceme ulozit bez lomitka '/', ktere je na konci stringu
+    df['title'] = df['title'].apply(lambda x: [y.strip(' /') if len(y) > 0 else y for y in x])  
+
 
     # Aby se nam list hodnot lepe ukladal, vytvorime z listu jeden string a jednotlive elementy spojime strednikem ';' 
     for column in df.columns:
