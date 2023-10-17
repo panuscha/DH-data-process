@@ -3,12 +3,12 @@ from pymarc import map_xml, MARCWriter
 file_path = 'data/ucla.xml'
 
 
-out_B = 'data/ucla/ucla_B.mrc'
-out_ret = 'data/ucla/ucla_ret.mrc'
-out_smz = 'data/ucla/ucla_smz.mrc'
-out_int = 'data/ucla/ucla_int.mrc'
-out_cle = 'data/ucla/ucla_cle.mrc'
-out_trl = 'data/ucla/ucla_trl.mrc'
+out_B = 'data/ucla test/ucla_B.mrc'
+out_ret = 'data/ucla test/ucla_ret.mrc'
+out_smz = 'data/ucla test/ucla_smz.mrc'
+out_int = 'data/ucla test/ucla_int.mrc'
+out_cle = 'data/ucla test/ucla_cle.mrc'
+out_trl = 'data/ucla test/ucla_trl.mrc'
 
 databases_B = ['B12', 'B45', 'B97', 'B70', 'B80']  
 database_ret = 'RET'
