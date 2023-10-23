@@ -4,14 +4,14 @@ import re
 file_path = 'data/uclo.xml'
 
 
-out_1945 = 'data/uclo/uclo_1945.mrc'
-out_alkaro = 'data/uclo/uclo_alkaro.mrc'
-out_ret = 'data/uclo/uclo_ret.mrc'
-out_smz = 'data/uclo/uclo_smz.mrc'
-out_int = 'data/uclo/uclo_int.mrc'
-out_cle_I = 'data/uclo/uclo_cle_I.mrc'
-out_cle_II = 'data/uclo/uclo_cle_II.mrc'
-out_trl = 'data/uclo/uclo_trl.mrc'
+out_1945 = 'data/uclo test/uclo_1945.mrc'
+out_alkaro = 'data/uclo test/uclo_alkaro.mrc'
+out_ret = 'data/uclo test/uclo_ret.mrc'
+out_smz = 'data/uclo test/uclo_smz.mrc'
+out_int = 'data/uclo test/uclo_int.mrc'
+out_cle_I = 'data/uclo test/uclo_cle_I.mrc'
+out_cle_II = 'data/uclo test/uclo_cle_II.mrc'
+out_trl = 'data/uclo test/uclo_trl.mrc'
 
 databases_1945 = ['B12', 'B45', 'B70', 'B80', 'B97', 'CLE', 'SMZ', 'INT' ]  
 database_ret = 'RET'
@@ -93,7 +93,7 @@ def save_databases(r):
                             print("Exception: " + type(error).__name__)         
     except Exception as error:
                             print("CLB")
-                            print(r)
+                            print(r.leader)
                             print("Exception: " + type(error).__name__)                         
                                                                  
 try:  
